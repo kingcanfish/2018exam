@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GXY dieeee</title> 
+</head>
+<body>
+<h1>翻车现场</h1>
+<h4>信息查询</h4>
+<label>学号</label>
+<input type="text" name="" id="username">
+<label>密码</label>
+<input type="password" name="" id="desc">
+<button id="save">登陆</button>
+<br>
+
+<label>学号</label>
+<p id='xh'></p>
+<label>姓名</label>
+<p id='name'></p>
+<label>出生年月</label>
+<p id='rxny'></p>
+<label>身份证号</label>
+<p id='sfzh'></p>
+<label>寝室号</label>
+<p id='qsh'></p>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+  /*	$('#save').click(function () {
+        addUser()
+      })*/
+    
+  	function addUser(username,password){
+  		console.log(123424)
+    $.ajax({
+    	url:"https://os.ncuos.com/api/user/token",
+    	contentType:"application/json; charset=utf-8",
+    	method:"POST",
+    	data:JSON.stringify({
+    		username:username,
+    		password:password,
+    	}),
+    	success:
+    	function(res){
+        token =res['token'];
+        $.ajax({
+          url:"https://os.ncuos.com/api/user/profile/basic",
+          contentType:"application/json; charset=utf-8",
+          method:"GET",
+          headers: {
+           authorization:'passport '+token},
+          success:
+            function(response){
+             document.getElementById('xh').innerHTML=response.base_info.xh
+             document.getElementById('name').innerHTML=response.base_info.xm
+             document.getElementById('rxny').innerHTML=response.base_info.rxny
+             document.getElementById('sfzh').innerHTML=response.base_info.sfzh
+             document.getElementById('qsh').innerHTML=response.base_info.qsh
+
+              }
+
+        })
+    	}
+	})}
+	function addUserControl() {
+        var usernameInput = $('#username')
+        var profileInput = $('#desc')
+        addUser(usernameInput.val(), profileInput.val())}
+    $("#save").click(addUserControl)
+</script>
+</body>
+</html>

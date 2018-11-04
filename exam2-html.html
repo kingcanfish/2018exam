@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GXY dieeee</title> 
+</head>
+<body>
+<h1>翻车现场</h1>
+<label>点击获取爬虫内容</label>
+<button id="save">保存</button>
+<p id = "xh"></p>
+<script src="https://cdn.bootcss.com/jquery/3.3.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+  /*	$('#save').click(function () {
+        addUser()
+      })*/
+    
+  	function addUser(username,desc){
+  		console.log(123424)
+    $.ajax({
+    	url:"http://localhost/get",
+    	
+    	method:"GET",
+    	success:
+    	function(response){
+        document.getElementById('xh').innerHTML=response;
+    	}
+	})}
+	function addUserControl() {
+        var usernameInput = $('#username')
+        var profileInput = $('#desc')
+        addUser(usernameInput.val(), profileInput.val())}
+    $("#save").click(addUserControl)
+</script>
+</body>
+</html>
